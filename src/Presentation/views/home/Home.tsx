@@ -26,9 +26,6 @@ export const HomeScreen = () => {
   }
 
 
-
-
-
   return (
     <View style={styles.container}>
       {/* Imagem de Fundo */}

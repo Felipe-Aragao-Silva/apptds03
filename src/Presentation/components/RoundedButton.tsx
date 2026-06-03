@@ -2,17 +2,22 @@
 // ./src/components/RoundedButton.tsx
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
-import { COLORS } from "../Presentation/theme/AppTheme";
+import { COLORS } from "../theme/AppTheme";
 
 interface Props{
     text:string,
 
+    onPress: () =>void;
+
 }
 
-export const RoundedButton = ( {text}: Props) =>{
+export const RoundedButton = ( {text, onPress}: Props) =>{
     return (
-        <TouchableOpacity onPress={() => {}}
+        <TouchableOpacity
+         onPress={onPress}
         style={styles.btn}>
+
+
             <Text style={styles.txtBtn}>
                 {text}
             </Text>
@@ -24,7 +29,7 @@ const styles = StyleSheet.create({
     btn:{
         width:'100%',
         height:50,
-        backgroundColor:COLORS.secundary,
+        backgroundColor:COLORS.primary,
         alignItems:'center',
         justifyContent:'center',
         borderRadius:15,

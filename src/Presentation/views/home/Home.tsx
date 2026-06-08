@@ -1,30 +1,38 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, Image, StyleSheet, TextInput, Button, ToastAndroid, Platform, Alert, TouchableOpacity} from 'react-native';
+
+//Componentes
 import { RoundedButton } from "../../components/RoundedButton";
+import { CustomTextInput } from "../../components/CustomTextInput";
 import { COLORS } from '../../theme/AppTheme';
+
+//ViewModel
+import HomeViewModel from "./ViewModel";
+
+
 //importação dos elementos de navegação
 import {useNavigation} from '@react-navigation/native';
 import { StackNavigationProp } from "@react-navigation/stack";
 import {RootStackParameList} from '../../../../App';
 
+
+
  
 export const HomeScreen = () => {
-
   const navigation = useNavigation<StackNavigationProp<RootStackParameList>>();
 
-  const testOS = () =>{
-    if(Platform.OS === 'android'){
-      ToastAndroid.show("Login realizado com sucesso!", ToastAndroid.SHORT)
-    } else if (Platform.OS === 'web'){
-      //Navegador: Usa o alert do JS classic
+  const { onChange, userEmail, userPassword, login } = HomeViewModel();
+  
+
+  const testOS = () => {
+    if (Platform.OS === 'android') {
+      ToastAndroid.show("Login realizado com sucesso!", ToastAndroid.SHORT);
+    } else if (Platform.OS === 'web') {
       alert('Teste de Login! - WEB');
-    } else{
-      // iOS: usa o alert nativo do iphone
-      Alert.alert('Aviso', 'Test de Login! - iPhone');
+    } else {
+      Alert.alert('Aviso', 'Teste de Login! - iPhone');
     }
-
-  }
-
+  };
 
   return (
     <View style={styles.container}>
@@ -33,7 +41,7 @@ export const HomeScreen = () => {
         source={require('../../../../assets/img/bg-smartphone.jpg')}
         style={styles.ImgBg}
       />
- 
+
       {/* Container do Logo */}
       <View style={styles.logoContainer}>
         <Image
@@ -42,48 +50,39 @@ export const HomeScreen = () => {
         />
         <Text style={styles.logoTxt}>Restaurante Trindade</Text>
       </View>
- 
+
       {/* Formulário Branco */}
       <View style={styles.frm}>
-        <Text style={styles.frmTitle}>Entrar</Text>
- 
-        {/* Input de Usuário/Email */}
-        <View style={styles.frmInput}>
-          <Image
-            source={require('../../../../assets/img/user.png')}
-            style={styles.frmIco}
-          />
-          <TextInput
-            placeholder="Digite seu Email / Usuário"
-            keyboardType="email-address"
-            style={styles.txtInput}
-          />
-        </View>
- 
-        {/* CORREÇÃO AQUI: Mudado de 'styles.frm' para 'styles.frmInput' */}
-        <View style={styles.frmInput}>
-          <Image
-            source={require('../../../../assets/img/password.png')}
-            style={styles.frmIco}
-          />
-          <TextInput
-            placeholder="Digite sua Senha"
+        <CustomTextInput
+          image={require('../../../../assets/img/user.png')}
+          placeholder="Digite seu Email / Usuário"
+          keyboardType="email-address"
+          secureTextEntry={false}
+          property="userEmail"
+          onChangeText={onChange}
+          value={userEmail}
+        />
+
+        <View>
+          <CustomTextInput
+            image={require('../../../../assets/img/user.png')}
+            placeholder="Digite a senha"
             keyboardType="default"
             secureTextEntry={true}
-            style={styles.txtInput}
+            property="userPassword"
+            onChangeText={onChange}
+            value={userPassword}
           />
+          <TouchableOpacity onPress={() => navigation.navigate('RecoveryRequisitionScreen')}>
+            <Text style={{ color: COLORS.secundary, marginTop: 10, textAlign: 'right' }}>Esqueci minha senha</Text>
+          </TouchableOpacity>
         </View>
- 
+
         {/* Botão de Entrar */}
         <View style={{ marginTop: 40 }}>
-          <RoundedButton
-          text="Login"
-          onPress={testOS}
-          //  onPress={() => {
-          //     ToastAndroid.show("Login realizado com sucesso!", ToastAndroid.SHORT);}}
-          />
+          <RoundedButton text="Login" onPress={ () => login()} />
         </View>
- 
+
         {/* Texto de Registro */}
         <View style={styles.frmRegistre}>
           <Text>Crie sua conta!</Text>
@@ -149,21 +148,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  frmInput:{
-      flexDirection: 'row',
-      marginTop: 30,
-  },
+
  
-  frmIco:{
-  width: 25,
-  height: 25,
-  marginTop: 10,
-},
-txtInput:{
-  flex:1,
-  borderBottomWidth: 2,
-  marginLeft: 15,
-},
+
+
 frmRegistre:{
   flexDirection:'row',
   justifyContent: 'center',

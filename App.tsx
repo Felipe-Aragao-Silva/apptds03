@@ -3,10 +3,12 @@ import {NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {HomeScreen} from './src/Presentation/views/home/Home';
 import { RegisterScreen } from './src/Presentation/views/register/Register';
+import { RecoveryRequisitionScreen } from './src/Presentation/views/recoveryRequisition/RecoveryRequisition';
 
 export type RootStackParameList = {
   HomeScreen : undefined,
   RegisterScreen: undefined,
+  RecoveryRequisitionScreen: undefined,
 }
 
 const Stack = createNativeStackNavigator();
@@ -26,6 +28,22 @@ const App = () => {
         options={{
           headerShown:true,
           title:'Novo usuário',
+        }}/>
+
+        <Stack.Screen
+        name="RecoveryRequisitionScreen"
+        component={RecoveryRequisitionScreen}
+        options={{
+          headerShown:true,
+          title:'Recuperação de senha',
+        }}/>
+
+        <Stack.Screen
+        name="RecoveryPasswordScreen"
+        component={RecoveryPasswordScreen}
+        options={{
+          headerShown:true,
+          title:'Recuperar Senha',
         }}/>
       </Stack.Navigator>
     </NavigationContainer>

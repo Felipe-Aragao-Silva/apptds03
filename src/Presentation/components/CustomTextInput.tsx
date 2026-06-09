@@ -8,6 +8,7 @@ interface Props {
     keyboardType: KeyboardType,
     secureTextEntry: boolean,
     property: string,
+    maxLength?: number,
     onChangeText:(property: string, value: any) => void,
 }
 
@@ -27,6 +28,7 @@ export const CustomTextInput = ({
                 value={value}
                 onChangeText={(text) => onChangeText(property, text)}
                 style={styles.txtInput}
+                maxLength={6}
             />
         </View>
     )

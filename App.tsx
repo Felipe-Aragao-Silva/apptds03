@@ -4,11 +4,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {HomeScreen} from './src/Presentation/views/home/Home';
 import { RegisterScreen } from './src/Presentation/views/register/Register';
 import { RecoveryRequisitionScreen } from './src/Presentation/views/recoveryRequisition/RecoveryRequisition';
+import { RecoveryPasswordScreen } from './src/Presentation/views/recoveryPassword/RecoveryPassword';
 
 export type RootStackParameList = {
   HomeScreen : undefined,
   RegisterScreen: undefined,
   RecoveryRequisitionScreen: undefined,
+  RecoveryPasswordScreen: undefined,
 }
 
 const Stack = createNativeStackNavigator();

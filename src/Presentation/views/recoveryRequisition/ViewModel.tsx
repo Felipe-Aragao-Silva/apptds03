@@ -9,10 +9,15 @@ const RecoveryRequisitionViewModel = () => {
         setValues({...values, [property]: value});
     }
 
+    const RecoveryRequisition = () => {
+        console.log(JSON.stringify(values));
+    }
+
 
     return {
         ...values,
         onChange,
+        RecoveryRequisition,
     }
 }
 

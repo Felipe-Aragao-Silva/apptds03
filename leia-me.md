@@ -25,3 +25,6 @@ https://reactnative.dev/docs/navigation
 ## Sempre que for instalar uma lib nativa (que interage com camera , localização, animações, etc)
 
 npx expo install <NOME_DA_LIB>
+
+# Pacotes para GPS
+npx expo install expo-location

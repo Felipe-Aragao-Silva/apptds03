@@ -28,7 +28,7 @@ export const CustomTextInput = ({
                 value={value}
                 onChangeText={(text) => onChangeText(property, text)}
                 style={styles.txtInput}
-                maxLength={6}
+                
             />
         </View>
     )

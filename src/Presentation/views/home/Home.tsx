@@ -13,7 +13,7 @@ import HomeViewModel from "./ViewModel";
 //importação dos elementos de navegação
 import {useNavigation} from '@react-navigation/native';
 import { StackNavigationProp } from "@react-navigation/stack";
-import {RootStackParameList} from '../../../../App';
+import {RootStackParameList} from '../../../../Aula03_App';
 
 
 
